@@ -1,0 +1,16 @@
+.jumbotron {
+  text-align: center;
+  padding: 0;
+  height: 10%;
+}
+
+.logo {
+  text-align: center;
+  width: 50%;
+}
+
+.app-container {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+}
