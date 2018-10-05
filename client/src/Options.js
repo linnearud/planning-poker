@@ -12,6 +12,7 @@ class Options extends Component {
   goHome = () => {
     this.setState({chosenAction: null})
   }
+
   createNewTask = () => {
     this.setState({chosenAction: 'Create'})
   }
@@ -29,16 +30,19 @@ class Options extends Component {
       <div>
         <Breadcrumb>
           <Breadcrumb.Item onClick={this.goHome}> Home </Breadcrumb.Item>
-          {this.state.chosenAction ? <Breadcrumb.Item> {this.state.chosenAction} </Breadcrumb.Item> : null}
+          {this.state.chosenAction ? <Breadcrumb.Item active> {this.state.chosenAction} </Breadcrumb.Item> : null}
         </Breadcrumb>
         {!this.state.chosenAction ? 
           <div>
-          Welcome {this.state.user.username}! What would you like to do?
-          <Button onClick={this.createNewTask}>Create a new task</Button>
-          <Button onClick={this.voteOnTask}> Vote on an existing task </Button>
-          <Button onClick={this.viewResults}> View the results for a task </Button>
+            <div className="welcome"> Welcome {this.state.user.username}! What would you like to do? </div>
+            <div className="buttons">
+              <Button onClick={this.createNewTask}>Create a new task</Button>
+              <Button onClick={this.voteOnTask}> Vote on an existing task </Button>
+              <Button onClick={this.viewResults}> View the results for a task </Button>
+            </div>
           </div>
-          : null
+        : 
+          null
         }
         {this.state.chosenAction === 'Create' ? <Create user_id={this.state.user._id}/> : null}
         {this.state.chosenAction === 'Vote' ? <Vote user_id={this.state.user._id}/> : null}

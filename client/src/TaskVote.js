@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import './App.css';
-import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Alert, Radio } from 'react-bootstrap'
+import { FormGroup, Button, Alert, Radio } from 'react-bootstrap'
 
 class TaskVote extends Component {
   state = {user_id: this.props.user_id, poll: this.props.poll, vote: this.props.vote, option: '', success: false}
 
   componentDidMount() {
-    if (this.state.vote) {
-      this.setState({option: this.state.vote.option})
-    }
+    var uri = "votes/" + this.state.poll._id + '/' + this.state.user_id;
+    fetch(uri, {
+      method: "GET",
+    }).then(res => { 
+      return res.json()
+    }).then(vote => {
+      if (vote) {
+        this.setState({vote: vote})
+      }
+    })
   }
 
   handleSubmit = (e) => {
-    console.log(e)
     e.preventDefault()
     fetch('/votes', {
       method: "PUT",
@@ -32,39 +38,21 @@ class TaskVote extends Component {
     this.setState({option: e.target.value})
   }
 
-  // handleSubmit = (e) => {
-  //   fetch('/votes', {
-  //     method: "PUT",
-  //     body: JSON.stringify({
-  //       user_id: this.state.user._id,
-  //       poll_id: this.state.poll._id        
-  //     })
-  //   }).then(res => { 
-  //     return res.json()
-  //   }).then(vote => {
-  //     if (vote) {
-  //       this.setState({vote: vote})
-  //       this.setState({success: true})
-  //     } 
-  //   })
-  //   e.preventDefault()
-  // }
-
   render() {
     return (
-
       <div>
-      {this.state.success ? <Alert bsStyle='success'> You vote has been saved! </Alert>: null}
-
-          {this.state.poll.pollname}
-          {this.state.poll.description}
-      {this.state.vote ? 
+        {this.state.success ? <Alert bsStyle='success'> You vote has been saved! </Alert> :
+        <div>
+          {this.state.vote ? 
             <div>
               <Alert bsStyle="warning"> You have already voted for {this.state.vote.option} in this poll, but you can change your vote here. </Alert>
             </div>
           :
            null
           }
+          <div> Task code: <span id="code"> {this.state.poll.code} </span> </div>
+          <div className="task-name">{this.state.poll.pollname}</div>
+          <div className="task-description"> {this.state.poll.description} </div>
           <form onSubmit={this.handleSubmit}>
             <FormGroup>
               {this.state.poll.options.map(function(option) {
@@ -73,6 +61,8 @@ class TaskVote extends Component {
             </FormGroup>
             <Button type="submit"> Submit </Button>
           </form>
+          </div>
+        }
       </div> 
     );
   }

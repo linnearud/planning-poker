@@ -6,7 +6,7 @@ import {Jumbotron} from 'react-bootstrap';
 class Header extends Component {
   render() {
     return (
-      <Jumbotron> 
+      <Jumbotron bsClass="jumbo"> 
       	<img src={logo} className="logo" alt="logo" />
       </Jumbotron>
     );
