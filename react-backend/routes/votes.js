@@ -38,7 +38,7 @@ router.put('/', function(req, res, next) {
     }
   })
 
-  req.app.io.sockets.emit('vote_changed', {poll_id: req.body.poll_id})
+  req.app.io.sockets.emit('vote_changed', req.body.poll_id)
 });
 
 module.exports = router;
