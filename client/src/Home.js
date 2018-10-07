@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import { Button } from 'react-bootstrap'
 import { Breadcrumb } from 'react-bootstrap'
-import Create from './Create'
-import Vote from './Vote'
-import View from './View'
+import CreateAction from './CreateAction'
+import VoteAction from './VoteAction'
+import ViewAction from './ViewAction'
 
 class Home extends Component {
   state = {user: this.props.user, chosenAction: null}
@@ -44,9 +44,9 @@ class Home extends Component {
         : 
           null
         }
-        {this.state.chosenAction === 'Create' ? <Create user_id={this.state.user._id}/> : null}
-        {this.state.chosenAction === 'Vote' ? <Vote user_id={this.state.user._id}/> : null}
-        {this.state.chosenAction === 'View' ? <View /> : null}
+        {this.state.chosenAction === 'Create' ? <CreateAction user_id={this.state.user._id}/> : null}
+        {this.state.chosenAction === 'Vote' ? <VoteAction user_id={this.state.user._id}/> : null}
+        {this.state.chosenAction === 'View' ? <ViewAction /> : null}
       </div>
     );
   }

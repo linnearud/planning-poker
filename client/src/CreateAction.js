@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Alert } from 'react-bootstrap'
 
-class Create extends Component {
+class CreateAction extends Component {
   state = {user_id: this.props.user_id, poll_name: '', poll_description: '', error: false, code: ''}
 
   changePollDescription = (e) => {
@@ -76,4 +76,4 @@ class Create extends Component {
   }
 }
 
-export default Create;
+export default CreateAction;

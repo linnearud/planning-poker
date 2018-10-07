@@ -3,7 +3,7 @@ import './App.css';
 import PollChart from './PollChart'
 import { FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap'
 
-class View extends Component {
+class ViewAction extends Component {
   state = {poll_code: '', poll: null, error: false}
 
   changePollCode = (e) => {
@@ -53,4 +53,4 @@ class View extends Component {
   }
 }
 
-export default View;
+export default ViewAction;

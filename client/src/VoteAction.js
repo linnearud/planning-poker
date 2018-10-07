@@ -3,7 +3,7 @@ import PollVote from './PollVote'
 import './App.css';
 import { FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap'
 
-class Vote extends Component {
+class VoteAction extends Component {
   state = {user_id: this.props.user_id, poll_code: '', poll: null, error: false}
 
   changePollCode = (e) => {
@@ -55,4 +55,4 @@ class Vote extends Component {
   }
 }
 
-export default Vote;
+export default VoteAction;
