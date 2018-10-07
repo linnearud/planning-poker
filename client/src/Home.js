@@ -6,7 +6,7 @@ import Create from './Create'
 import Vote from './Vote'
 import View from './View'
 
-class Options extends Component {
+class Home extends Component {
   state = {user: this.props.user, chosenAction: null}
 
   goHome = () => {
@@ -52,4 +52,4 @@ class Options extends Component {
   }
 }
 
-export default Options;
+export default Home;

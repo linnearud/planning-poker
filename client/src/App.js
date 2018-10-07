@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header'
-import Options from './Options'
+import Home from './Home'
 import './App.css';
 import { FormGroup, FormControl, ControlLabel, HelpBlock, Button } from 'react-bootstrap'
 
@@ -88,7 +88,7 @@ class App extends Component {
             <div>
               <Header />
               <div className="app-container">
-                <Options user={this.state.user} />
+                <Home user={this.state.user} />
               </div>
             </div>
           }
