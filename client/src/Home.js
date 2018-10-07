@@ -13,11 +13,11 @@ class Home extends Component {
     this.setState({chosenAction: null})
   }
 
-  createNewTask = () => {
+  createNewPoll = () => {
     this.setState({chosenAction: 'Create'})
   }
 
-  voteOnTask = () => {
+  voteInPoll = () => {
     this.setState({chosenAction: 'Vote'})
   }
 
@@ -36,9 +36,9 @@ class Home extends Component {
           <div>
             <div className="welcome"> Welcome {this.state.user.username}! What would you like to do? </div>
             <div className="buttons">
-              <Button onClick={this.createNewTask}>Create a new task</Button>
-              <Button onClick={this.voteOnTask}> Vote on an existing task </Button>
-              <Button onClick={this.viewResults}> View the results for a task </Button>
+              <Button onClick={this.createNewPoll}>Create a new poll</Button>
+              <Button onClick={this.voteInPoll}> Vote in an existing poll </Button>
+              <Button onClick={this.viewResults}> View the results for a poll </Button>
             </div>
           </div>
         : 

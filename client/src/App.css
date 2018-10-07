@@ -49,11 +49,11 @@ button {
   font-weight: bold;
 }
 
-.task-name {
+.poll-name {
   font-size: 30px;
 }
 
-.task-description {
+.poll-description {
   font-size: 20px;
   color: #afafb0;
   margin-bottom: 20px;

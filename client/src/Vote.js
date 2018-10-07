@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import TaskVote from './TaskVote'
+import PollVote from './PollVote'
 import './App.css';
 import { FormGroup, FormControl, ControlLabel, Button, Alert } from 'react-bootstrap'
 
 class Vote extends Component {
   state = {user_id: this.props.user_id, poll_code: '', poll: null, error: false}
 
-  changeTaskCode = (e) => {
+  changePollCode = (e) => {
     this.setState({poll_code: e.target.value})
   }
 
@@ -31,15 +31,15 @@ class Vote extends Component {
       <div>
       {!this.state.poll ?
         <div>
-          {this.state.error === true ? <Alert bsStyle="warning"> Could not find task. Make sure you entered the correct code. </Alert> : null}
+          {this.state.error === true ? <Alert bsStyle="warning"> Could not find poll. Make sure you entered the correct code. </Alert> : null}
           <form onSubmit={this.handleSubmit}>
             <FormGroup >
-              <ControlLabel> Enter the task code. </ControlLabel>
+              <ControlLabel> Enter the poll code. </ControlLabel>
               <FormControl
                 type="text"
                 value={this.state.poll_code}
-                placeholder="Task Code"
-                onChange={this.changeTaskCode}
+                placeholder="Poll Code"
+                onChange={this.changePollCode}
                />
             </FormGroup>
             <Button className="submit-button" type="submit" disabled={!this.state.poll_code}>Enter</Button>
@@ -47,7 +47,7 @@ class Vote extends Component {
         </div>
       :
           <div> 
-            <TaskVote user_id={this.state.user_id} poll={this.state.poll}/>
+            <PollVote user_id={this.state.user_id} poll={this.state.poll}/>
           </div>
       }
       </div> 

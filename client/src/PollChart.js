@@ -53,8 +53,8 @@ class View extends Component {
     return (
       <div>
         <div> Task code: <span id="code"> {this.state.poll.code} </span> </div>
-        <div className="task-name">{this.state.poll.pollname}</div>
-        <div className="task-description">{this.state.poll.description}</div>
+        <div className="poll-name">{this.state.poll.pollname}</div>
+        <div className="poll-description">{this.state.poll.description}</div>
         <ResponsiveContainer width='100%' height={400}>
           <BarChart data={this.state.votes }>
             <XAxis dataKey="x" />

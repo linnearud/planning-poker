@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { FormGroup, Button, Alert, Radio } from 'react-bootstrap'
 
-class TaskVote extends Component {
+class PollVote extends Component {
   state = {user_id: this.props.user_id, poll: this.props.poll, vote: this.props.vote, option: '', success: false}
 
   componentDidMount() {
@@ -50,9 +50,9 @@ class TaskVote extends Component {
           :
            null
           }
-          <div> Task code: <span id="code"> {this.state.poll.code} </span> </div>
-          <div className="task-name">{this.state.poll.pollname}</div>
-          <div className="task-description"> {this.state.poll.description} </div>
+          <div> Poll code: <span id="code"> {this.state.poll.code} </span> </div>
+          <div className="poll-name">{this.state.poll.pollname}</div>
+          <div className="poll-description"> {this.state.poll.description} </div>
           <form onSubmit={this.handleSubmit}>
             <FormGroup>
               {this.state.poll.options.map(function(option) {
@@ -68,4 +68,4 @@ class TaskVote extends Component {
   }
 }
 
-export default TaskVote;
+export default PollVote;

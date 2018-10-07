@@ -3,13 +3,13 @@ import './App.css';
 import { FormGroup, FormControl, ControlLabel, HelpBlock, Button, Alert } from 'react-bootstrap'
 
 class Create extends Component {
-  state = {user_id: this.props.user_id, task_name: '', task_description: '', error: false, code: ''}
+  state = {user_id: this.props.user_id, poll_name: '', poll_description: '', error: false, code: ''}
 
-  changeTaskDescription = (e) => {
-    this.setState({task_description: e.target.value})
+  changePollDescription = (e) => {
+    this.setState({poll_description: e.target.value})
   }
-  changeTaskName = (e) => {
-    this.setState({task_name: e.target.value})
+  changePollName = (e) => {
+    this.setState({poll_name: e.target.value})
   }
 
   handleSubmit = (e) => {
@@ -20,8 +20,8 @@ class Create extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        pollname: this.state.task_name,
-        description: this.state.task_description,
+        pollname: this.state.poll_name,
+        description: this.state.poll_description,
         options: [0, 0.5, 1, 2, 3, 5, 8, 13],
         user: this.state.used_id
       })
@@ -32,7 +32,7 @@ class Create extends Component {
       }
       return res.json()
     }).then(poll => {
-      if (poll) this.setState({task_name: '', task_description: '', code: poll.code})
+      if (poll) this.setState({poll_name: '', poll_description: '', code: poll.code})
     })
     e.preventDefault();
   }
@@ -42,33 +42,33 @@ class Create extends Component {
       <div>
         {!this.state.code ? 
           <div>
-            {this.state.error === true ? <Alert bsStyle="danger"> Could not create task. Please try again with a different task name. </Alert> : null}
+            {this.state.error === true ? <Alert bsStyle="danger"> Could not create poll. Please try again with a different name. </Alert> : null}
             <form onSubmit={this.handleSubmit}>
               <FormGroup >
-                <ControlLabel> Enter the name of the task. </ControlLabel>
+                <ControlLabel> Enter the name of the poll. </ControlLabel>
                   <FormControl
                     type="text"
-                    value={this.state.task_name}
-                    placeholder="Task Name"
-                    onChange={this.changeTaskName}
+                    value={this.state.poll_name}
+                    placeholder="Poll Name"
+                    onChange={this.changePollName}
                    />
-                <HelpBlock>You must enter a task name.</HelpBlock>
+                <HelpBlock>You must enter a poll name.</HelpBlock>
               </FormGroup>
               <FormGroup>
-                <ControlLabel> Enter an optional task description. </ControlLabel>
+                <ControlLabel> Enter an optional description. </ControlLabel>
                 <FormControl
                   componentClass="textarea"
-                  value={this.state.task_description}
-                  placeholder="Task Description"
-                  onChange={this.changeTaskDescription}
+                  value={this.state.poll_description}
+                  placeholder="Poll Description"
+                  onChange={this.changePollDescription}
                  />
               </FormGroup>
-              <Button className="submit-button" type="submit" disabled={!this.state.task_name}>Create Task</Button>
+              <Button className="submit-button" type="submit" disabled={!this.state.poll_name}>Create Poll</Button>
             </form>
           </div>  
         : 
           <div>
-            <Alert bsStyle="success"> The task was successfully created! The code for your task is <span id="code">{this.state.code}</span>. </Alert>
+            <Alert bsStyle="success"> The poll was successfully created! The code for your poll is <span id="code">{this.state.code}</span>. </Alert>
           </div>
         }
       </div>
