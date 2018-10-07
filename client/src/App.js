@@ -63,37 +63,37 @@ class App extends Component {
   }
 
   render() {
-    if (!this.state.user) {
       return (
         <div>
-          <Header />
-          <div className="app-container">
-            <form onSubmit={this.handleSubmit}>
-              <FormGroup validationState = {this.getUsernameValidationState()}>
-                <ControlLabel> Enter your username. If your username does not exist, it will be created for you. </ControlLabel>
-                <FormControl
-                  type="text"
-                  value={this.state.username}
-                  placeholder="Username"
-                  onChange={this.changeUsername}
-                />
-                <HelpBlock>Username can only contain letters or digits.</HelpBlock>
-              </FormGroup>
-              <Button className="submit-button" type="submit" disabled={!this.state.canSumbit}>Continue</Button>
-            </form>
-          </div>
+          {!this.state.user ?
+            <div>
+              <Header />
+              <div className="app-container">
+                <form onSubmit={this.handleSubmit}>
+                  <FormGroup validationState = {this.getUsernameValidationState()}>
+                    <ControlLabel bsClass="control-label"> Enter your username. If your username does not exist, it will be created for you. </ControlLabel>
+                    <FormControl
+                      type="text"
+                      value={this.state.username}
+                      placeholder="Username"
+                      onChange={this.changeUsername}
+                    />
+                    <HelpBlock>Username can only contain letters or digits.</HelpBlock>
+                  </FormGroup>
+                  <Button className="submit-button" type="submit" disabled={!this.state.canSumbit}>Continue</Button>
+                </form>
+              </div>
+            </div>
+          :
+            <div>
+              <Header />
+              <div className="app-container">
+                <Options user={this.state.user} />
+              </div>
+            </div>
+          }
         </div>
-      );
-    } else {
-      return (
-        <div>
-          <Header />
-          <div className="app-container">
-            <Options user={this.state.user} />
-          </div>
-        </div>
-      );
-    }    
+      );    
   }
 }
 

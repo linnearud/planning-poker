@@ -42,6 +42,7 @@ class Create extends Component {
       <div>
         {!this.state.code ? 
           <div>
+            {this.state.error === true ? <Alert bsStyle="danger"> Could not create task. Please try again with a different task name. </Alert> : null}
             <form onSubmit={this.handleSubmit}>
               <FormGroup >
                 <ControlLabel> Enter the name of the task. </ControlLabel>
@@ -54,7 +55,7 @@ class Create extends Component {
                 <HelpBlock>You must enter a task name.</HelpBlock>
               </FormGroup>
               <FormGroup>
-                <ControlLabel> Enter a task description. </ControlLabel>
+                <ControlLabel> Enter an optional task description. </ControlLabel>
                 <FormControl
                   componentClass="textarea"
                   value={this.state.task_description}
@@ -64,14 +65,13 @@ class Create extends Component {
               </FormGroup>
               <Button className="submit-button" type="submit" disabled={!this.state.task_name}>Create Task</Button>
             </form>
-            {this.state.error === true ? <Alert bsStyle="danger"> Could not create task. Please try again with another task name. </Alert> : null}
           </div>  
         : 
           <div>
-            The task was successfully created! The code for your task is {this.state.code}.
+            <Alert bsStyle="success"> The task was successfully created! The code for your task is <span id="code">{this.state.code}</span>. </Alert>
           </div>
         }
-        </div>
+      </div>
     );
   }
 }
